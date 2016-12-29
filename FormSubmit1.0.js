@@ -52,6 +52,20 @@ textStatus, errorThrown
 request.always(function () {
 // Reenable the inputs
 $inputs.prop("disabled", false);
+// Your form redirect URL
+var redirectURL = “http://www.anacondareporting.com/p/success.html”;
+
+// Fixes an issue with IE8 and lower
+if ( navigator.userAgent.match(/MSIE\s(?!9.0)/) ) {
+var referLink = document.createElement( "a" );
+referLink.href = redirectURL;
+document.body.appendChild( referLink );
+referLink.click();
+
+// Standard redirect for all other browsers
+} else {
+window.location.assign( redirectURL );
+}
 });
 
 // Prevent default posting of form
